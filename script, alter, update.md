@@ -2,7 +2,7 @@
 **ДОМАШНЕЕ ЗАДАНИЕ 2**
 
 
-Создание Таблицы:
+**Создание Таблицы:**
 
 
 
@@ -75,7 +75,7 @@ CREATE TABLE attachment (
 
 
 
-Alter запросы:
+**Alter запросы:**
 
 
 1. Добавим поле "status" в таблицу task
@@ -94,7 +94,7 @@ ALTER TABLE category ADD COLUMN description TEXT;
 ALTER TABLE tag ALTER COLUMN title SET NOT NULL;
 
 
-Insert-запросы:
+**Insert-запросы:**
 
 
 
@@ -147,7 +147,7 @@ INSERT INTO attachment (task_id, file_path) VALUES
 (3, '/files/shopping_list.txt');
 
 
-UPDATE-запросы:
+**UPDATE-запросы:**
 
 UPDATE task 
 SET status = 'in progress' 
@@ -168,6 +168,7 @@ WHERE id = 3;
 UPDATE category 
 SET title = 'Work Tasks' 
 WHERE id = 1;
+
 
 
 
