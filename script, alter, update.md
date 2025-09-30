@@ -90,19 +90,24 @@ CREATE TABLE attachment (
 
 ```sql
 1. Добавим поле "status" в таблицу task
-ALTER TABLE task ADD COLUMN status VARCHAR(20) DEFAULT 'new';
+ALTER TABLE task 
+ADD COLUMN status VARCHAR(20) DEFAULT 'new';
 
 2. Добавим дату создания профиля
-ALTER TABLE user_profile ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE user_profile 
+ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 
 3. Изменим размер поля username
-ALTER TABLE user_data ALTER COLUMN username TYPE VARCHAR(100);
+ALTER TABLE user_data 
+ALTER COLUMN username TYPE VARCHAR(100);
 
 4. Добавим поле description для категории
-ALTER TABLE category ADD COLUMN description TEXT;
+ALTER TABLE category 
+ADD COLUMN description TEXT;
 
 5. Установим NOT NULL для title у тегов
-ALTER TABLE tag ALTER COLUMN title SET NOT NULL;
+ALTER TABLE tag 
+ALTER COLUMN title SET NOT NULL;
 ```
 
 ## Insert-запросы:
@@ -187,6 +192,7 @@ UPDATE category
 SET title = 'Work Tasks' 
 WHERE id = 1;
 ```
+
 
 
 
