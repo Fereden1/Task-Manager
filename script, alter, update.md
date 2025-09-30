@@ -6,6 +6,9 @@
 
 
 
+
+
+
 CREATE TABLE user_data (
     id SERIAL PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -75,7 +78,14 @@ CREATE TABLE attachment (
 
 
 
+
+
+
 **Alter запросы:**
+
+
+
+
 
 
 1. Добавим поле "status" в таблицу task
@@ -147,7 +157,14 @@ INSERT INTO attachment (task_id, file_path) VALUES
 (3, '/files/shopping_list.txt');
 
 
+
+
+
+
 **UPDATE-запросы:**
+
+
+
 
 UPDATE task 
 SET status = 'in progress' 
@@ -168,6 +185,7 @@ WHERE id = 3;
 UPDATE category 
 SET title = 'Work Tasks' 
 WHERE id = 1;
+
 
 
 
