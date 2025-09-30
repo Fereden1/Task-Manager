@@ -1,15 +1,16 @@
 
-**ДОМАШНЕЕ ЗАДАНИЕ 2**
+#**ДОМАШНЕЕ ЗАДАНИЕ 2**
 
 
-**Создание Таблицы:**
-
-
-
+##**Создание Таблицы:**
 
 
 
-CREATE TABLE user_data (
+
+
+
+```sql
+    CREATE TABLE user_data (
     id SERIAL PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(100) NOT NULL UNIQUE,
@@ -75,19 +76,19 @@ CREATE TABLE attachment (
     task_id INT REFERENCES task(id) ON DELETE CASCADE,
     file_path VARCHAR(255) NOT NULL
 );
+```
 
 
 
 
 
-
-**Alter запросы:**
-
+##**Alter запросы:**
 
 
 
 
 
+```sql
 1. Добавим поле "status" в таблицу task
 ALTER TABLE task ADD COLUMN status VARCHAR(20) DEFAULT 'new';
 
@@ -102,12 +103,12 @@ ALTER TABLE category ADD COLUMN description TEXT;
 
 5. Установим NOT NULL для title у тегов
 ALTER TABLE tag ALTER COLUMN title SET NOT NULL;
+```
+
+##**Insert-запросы:**
 
 
-**Insert-запросы:**
-
-
-
+```sql
 INSERT INTO user_data (username, email, password) VALUES
 ('alice', 'alice@example.com', 'pass1'),
 ('bob', 'bob@example.com', 'pass2'),
@@ -155,17 +156,17 @@ INSERT INTO attachment (task_id, file_path) VALUES
 (1, '/files/project_spec.pdf'),
 (2, '/files/book.pdf'),
 (3, '/files/shopping_list.txt');
+```
 
 
 
 
 
-
-**UPDATE-запросы:**
-
+##**UPDATE-запросы:**
 
 
 
+```sql
 UPDATE task 
 SET status = 'in progress' 
 WHERE id = 1;
@@ -185,6 +186,7 @@ WHERE id = 3;
 UPDATE category 
 SET title = 'Work Tasks' 
 WHERE id = 1;
+```
 
 
 
