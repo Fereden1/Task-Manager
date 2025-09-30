@@ -1,8 +1,8 @@
 
-#**ДОМАШНЕЕ ЗАДАНИЕ 2**
+# ДОМАШНЕЕ ЗАДАНИЕ 2
 
 
-##**Создание Таблицы:**
+## Создание Таблицы:
 
 
 
@@ -82,7 +82,7 @@ CREATE TABLE attachment (
 
 
 
-##**Alter запросы:**
+## Alter запросы:
 
 
 
@@ -105,7 +105,7 @@ ALTER TABLE category ADD COLUMN description TEXT;
 ALTER TABLE tag ALTER COLUMN title SET NOT NULL;
 ```
 
-##**Insert-запросы:**
+## Insert-запросы:
 
 
 ```sql
@@ -162,7 +162,7 @@ INSERT INTO attachment (task_id, file_path) VALUES
 
 
 
-##**UPDATE-запросы:**
+## UPDATE-запросы:
 
 
 
@@ -187,6 +187,7 @@ UPDATE category
 SET title = 'Work Tasks' 
 WHERE id = 1;
 ```
+
 
 
 
