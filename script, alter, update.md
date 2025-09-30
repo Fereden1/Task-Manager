@@ -1,5 +1,5 @@
 
-ДОМАШНЕЕ ЗАДАНИЕ 2
+**ДОМАШНЕЕ ЗАДАНИЕ 2**
 
 
 Создание Таблицы:
@@ -168,6 +168,7 @@ WHERE id = 3;
 UPDATE category 
 SET title = 'Work Tasks' 
 WHERE id = 1;
+
 
 
 
