@@ -1,12 +1,13 @@
 # Таблица user_data
 
 ## До:
+``` sql
 CREATE TABLE user_data (
     id SERIAL PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL
-);
+); ```
 
 ## Нарушение:
 Таблица находилась только в 1НФ. Атрибут password хранился небезопасно. При добавлении ролей (например, admin, user) возникла бы транзитивная зависимость, т.к. роль зависит от пользователя, а не от первичного ключа напрямую.
@@ -262,6 +263,7 @@ CREATE TABLE attachment (
 
 ## Нормальная форма:
 3НФ — каждая зависимость прямая от первичного ключа.
+
 
 
 
