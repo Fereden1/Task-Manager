@@ -1,6 +1,8 @@
 ## SELECT
-```SELECT * FROM user_data;
-SELECT * FROM task;```
+```
+SELECT * FROM user_data;
+SELECT * FROM task;
+```
 
 ## select нескольких столбцов
 ```SELECT username, email FROM user_data;
@@ -118,3 +120,4 @@ SELECT c.content, u.username, t.title AS task_title
 FROM comment c
 INNER JOIN user_data u ON c.user_id = u.id
 INNER JOIN task t ON c.task_id = t.id;```
+
