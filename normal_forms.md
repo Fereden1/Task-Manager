@@ -2,7 +2,7 @@
 
 # Таблица user_profile
 
-## До:
+До:
 ```
 CREATE TABLE user_profile (
     id SERIAL PRIMARY KEY,
@@ -12,12 +12,12 @@ CREATE TABLE user_profile (
 );
 ```
 
-## Нарушение:
+Нарушение:
 2НФ, но имеется избыточность ключей (id и user_id). Нарушение 3НФ - атрибуты full_name и bio зависят от user_id, а не от первичного ключа id. Потенциальные аномалии обновления
 Решение:
 Убрать поле id, сделать user_id первичным ключом.
 
-## После:
+После:
 ```
 CREATE TABLE user_profile (
     user_id INT PRIMARY KEY REFERENCES user_data(id) ON DELETE CASCADE,
@@ -25,7 +25,7 @@ CREATE TABLE user_profile (
     bio TEXT
 );
 ```
-## Нормальная форма:
+Нормальная форма:
 3НФ — все атрибуты зависят только от user_id.
 
 
@@ -36,7 +36,7 @@ CREATE TABLE user_profile (
 
 # Таблица category
 
-## До:
+До:
 ```
 CREATE TABLE category (
     id SERIAL PRIMARY KEY,
@@ -45,18 +45,19 @@ CREATE TABLE category (
 ```
 Нарушение: Таблица была в 2НФ, но могла иметь дубликаты категорий ("Работа" и "работа"), что создавало аномалии вставки и обновления.
 
-## Решение:
+Решение:
 Добавлено ограничение UNIQUE к полю title
 
-## После:
+После:
 ```
 CREATE TABLE category (
     id SERIAL PRIMARY KEY,
     title VARCHAR(100) UNIQUE NOT NULL
 );
 ```
-## Нормальная форма:
+Нормальная форма:
 3НФ (исключены дубликаты категорий).
+
 
 
 
