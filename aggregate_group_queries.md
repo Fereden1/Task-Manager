@@ -1,4 +1,4 @@
-<img width="210" height="79" alt="Screenshot_9" src="https://github.com/user-attachments/assets/df7bc8cc-e356-4e30-a157-21cfde0c1859" />## COUNT()
+## COUNT()
 Подсчитать количество задач у каждого пользователя
 ```
 SELECT user_id, COUNT(*) AS total_tasks
@@ -219,6 +219,7 @@ JOIN priority p ON t.priority_id = p.id
 GROUP BY CUBE(c.title, p.title);
 ```
 <img width="439" height="392" alt="rtyry" src="https://github.com/user-attachments/assets/9d57416b-7711-4da5-906a-13486dddf4da" />
+
 
 
 
