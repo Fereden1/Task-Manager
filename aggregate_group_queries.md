@@ -17,6 +17,7 @@ GROUP BY task_id;
 
 ## SUM()
 Сумма завершенных подзадач по каждой задаче
+
 ```
 SELECT task_id, SUM(CASE WHEN completed THEN 1 ELSE 0 END) AS completed_subtasks
 FROM subtask
@@ -25,6 +26,7 @@ GROUP BY task_id;
 <img width="266" height="180" alt="Screenshot_5" src="https://github.com/user-attachments/assets/0246a6f9-98d0-4ca9-accc-133f293f0430" />
 
 Сумма всех задач (завершенных и незавершенных) по категориям
+
 ```
 SELECT c.title AS category, SUM(1) AS total_tasks
 FROM task t
@@ -78,13 +80,17 @@ FROM (
 
 ## MAX()
 Максимальная дата задачи у каждого пользователя
+
 ```
 SELECT user_id, MAX(task_date) AS latest_task
 FROM task
 GROUP BY user_id;
 ```
+
 <img width="207" height="142" alt="Screenshot_13" src="https://github.com/user-attachments/assets/a34c79c3-c8b5-4188-9895-62c483717d23" />
+
 Максимальное количество комментариев среди всех задач
+
 ```
 SELECT MAX(comment_count) AS max_comments
 FROM (
@@ -93,6 +99,7 @@ FROM (
     GROUP BY task_id
 ) AS comment_stats;
 ```
+
 <img width="162" height="73" alt="Screenshot_14" src="https://github.com/user-attachments/assets/67d3ea6e-e2b0-4bb6-94c1-944e46ccead9" />
 
 ## STRING_AGG()
@@ -265,4 +272,5 @@ HAVING COUNT(t.id) > 0
 ORDER BY done_tasks DESC;
 ```
 <img width="293" height="143" alt="Screenshot_24" src="https://github.com/user-attachments/assets/385f41c4-ae21-41bc-8100-f72ab6cebc30" />
+
 
