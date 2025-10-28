@@ -76,7 +76,7 @@ FROM (
 ```
 <img width="154" height="70" alt="Screenshot_12" src="https://github.com/user-attachments/assets/a245d1b7-e7ed-4303-b3a1-696a2341b690" />
 
-##MAX()
+## MAX()
 Максимальная дата задачи у каждого пользователя
 ```
 SELECT user_id, MAX(task_date) AS latest_task
@@ -220,6 +220,49 @@ GROUP BY CUBE(c.title, p.title);
 ```
 <img width="439" height="392" alt="rtyry" src="https://github.com/user-attachments/assets/9d57416b-7711-4da5-906a-13486dddf4da" />
 
+## SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY
 
+Список всех выполненных задач, отсортированных по дате
+```
+SELECT title, task_date
+FROM task
+WHERE completed = TRUE
+ORDER BY task_date DESC;
+```
 
+<img width="289" height="140" alt="erterter" src="https://github.com/user-attachments/assets/a5b80567-a5b9-4883-97b4-7705f4581b53" />
+
+Невыполненные задачи, отсортированные по приоритету
+
+```
+SELECT t.title, p.title AS priority
+FROM task t
+JOIN priority p ON p.id = t.priority_id
+WHERE t.completed = FALSE
+ORDER BY p.title;
+```
+<img width="381" height="190" alt="Screenshot_22" src="https://github.com/user-attachments/assets/f4b198a4-a072-4739-a6b1-64940cf75ee9" />
+
+Количество невыполненных задач по пользователям
+```
+SELECT u.username, COUNT(t.id) AS pending_tasks
+FROM user_data u
+JOIN task t ON u.id = t.user_id
+WHERE t.completed = FALSE
+GROUP BY u.username
+ORDER BY pending_tasks DESC;
+```
+<img width="304" height="142" alt="Screenshot_23" src="https://github.com/user-attachments/assets/a69df12b-5302-4ff5-bae3-157bed9ab0a7" />
+
+Количество выполненных задач по категориям, только если > 0
+```
+SELECT c.title, COUNT(t.id) AS done_tasks
+FROM task t
+JOIN category c ON c.id = t.category_id
+WHERE t.completed = TRUE
+GROUP BY c.title
+HAVING COUNT(t.id) > 0
+ORDER BY done_tasks DESC;
+```
+<img width="293" height="143" alt="Screenshot_24" src="https://github.com/user-attachments/assets/385f41c4-ae21-41bc-8100-f72ab6cebc30" />
 
