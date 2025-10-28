@@ -123,7 +123,7 @@ SELECT STRING_AGG(title, ', ') AS all_categories FROM category;
 
 ## GROUP BY, HAVING
 
-Найти пользователей, у которых больше 3 задач
+Найти пользователей, у которых больше 2 задач
 ```
 SELECT user_id, COUNT(*) AS total_tasks
 FROM task
@@ -133,7 +133,7 @@ HAVING COUNT(*) > 2;
 
 <img width="218" height="96" alt="werwerwe" src="https://github.com/user-attachments/assets/ff9ef35a-4528-4f20-a0a7-97c5373b9fa6" />
 
-Найти категории, где хотя бы 2 задачи завершены
+Найти категории, где хотя бы 1 задачи завершены
 ```
 SELECT c.title AS category, COUNT(*) AS completed_tasks
 FROM task t
@@ -272,5 +272,6 @@ HAVING COUNT(t.id) > 0
 ORDER BY done_tasks DESC;
 ```
 <img width="293" height="143" alt="Screenshot_24" src="https://github.com/user-attachments/assets/385f41c4-ae21-41bc-8100-f72ab6cebc30" />
+
 
 
