@@ -1,4 +1,5 @@
-<img width="729" height="120" alt="Screenshot_24" src="https://github.com/user-attachments/assets/a667cb9d-8a7d-4bc4-a985-16f45f087437" /># SELECT
+
+# SELECT
 
 Количество задач у каждого пользователя
 ```
