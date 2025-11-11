@@ -25,3 +25,27 @@ SELECT title,
 FROM task t;
 ```
 <img width="397" height="296" alt="1 3" src="https://github.com/user-attachments/assets/1d170513-1054-4476-b4d5-2793ba6b57b8" />
+
+# FROM
+
+Пользователи с количеством задач
+```
+SELECT u.username, task_info.task_count
+FROM user_data u
+JOIN (SELECT user_id, COUNT(*) AS task_count FROM task GROUP BY user_id) task_info
+ON task_info.user_id = u.id;
+```
+
+Категории и число задач в них
+```
+SELECT c.title, stats.task_total
+FROM category c
+JOIN (SELECT category_id, COUNT(*) AS task_total FROM task GROUP BY category_id) stats
+ON stats.category_id = c.id;
+```
+
+Среднее количество подзадач на задачу
+```
+SELECT AVG(sub_count) AS avg_subtasks_per_task
+FROM (SELECT COUNT(*) AS sub_count FROM subtask GROUP BY task_id) AS sub_stats;
+```
