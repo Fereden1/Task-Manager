@@ -201,4 +201,18 @@ FROM task;
 ```
 <img width="427" height="320" alt="18" src="https://github.com/user-attachments/assets/f43b43b6-99ce-4a37-811d-823817f241dc" />
 
-## 
+## Накопительное количество задач пользователя
+```
+SELECT 
+    user_id,
+    id AS task_id,
+    task_date,
+    COUNT(*) OVER (
+        PARTITION BY user_id
+        ORDER BY task_date
+        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+    ) AS cumulative_tasks
+FROM task
+ORDER BY user_id, task_date;
+```
+<img width="397" height="309" alt="19" src="https://github.com/user-attachments/assets/53615b77-5e14-4243-b543-bf7d80d372de" />
