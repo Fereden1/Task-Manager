@@ -230,6 +230,7 @@ SELECT
 FROM task
 WHERE task_date IS NOT NULL;
 ```
+<img width="253" height="319" alt="20" src="https://github.com/user-attachments/assets/14159f16-c6ab-4045-b3cd-12afc278507e" />
 
 ## количество задач за текущую дату и все предыдущие
 ```
@@ -242,6 +243,8 @@ SELECT
 FROM task
 WHERE task_date IS NOT NULL;
 ```
+<img width="256" height="313" alt="21" src="https://github.com/user-attachments/assets/b39c4765-22ed-45f3-9886-6a64060fefab" />
+
 # Ранжирующие функции
 
 ## порядковый номер задач по дате
@@ -251,3 +254,79 @@ SELECT
     ROW_NUMBER() OVER (ORDER BY task_date) AS row_num
 FROM task;
 ```
+<img width="476" height="320" alt="22" src="https://github.com/user-attachments/assets/8797bcee-5d9f-448d-9110-297d76877bbe" />
+
+## у одинаковых — одинаковый ранг, с пропусками
+```
+SELECT
+    title,
+    priority_id,
+    RANK() OVER (
+        ORDER BY priority_id DESC
+    ) AS priority_rank
+FROM task;
+```
+<img width="400" height="323" alt="23" src="https://github.com/user-attachments/assets/dfe60a2a-eb73-44a0-bf4b-e2236fdeec8a" />
+
+## без пропусков рангов
+```
+SELECT
+    id, title, task_date,
+    DENSE_RANK() OVER (ORDER BY task_date) AS dense_rank_num
+FROM task;
+```
+<img width="511" height="317" alt="24" src="https://github.com/user-attachments/assets/bcdd76c6-a527-4430-accf-31c17d3eb771" />
+
+# Функции смещения
+
+## предыдущая задача по дате
+```
+SELECT
+    id,
+    title,
+    task_date,
+    LAG(title) OVER (ORDER BY task_date) AS prev_task
+FROM task;
+```
+<img width="569" height="318" alt="25" src="https://github.com/user-attachments/assets/4eb55553-90c9-405d-9d87-12b6680fb8b5" />
+
+
+
+## следующая задача по дате
+```
+SELECT
+    id,
+    title,
+    task_date,
+    LEAD(title) OVER (ORDER BY task_date) AS next_task
+FROM task;
+```
+<img width="574" height="315" alt="26" src="https://github.com/user-attachments/assets/144df606-0c36-4681-b317-ed9a7b20a18b" />
+
+
+## первая задача пользователя
+```
+SELECT
+    id,
+    title,
+    FIRST_VALUE(title) OVER (
+        PARTITION BY user_id ORDER BY task_date
+    ) AS first_task
+FROM task;
+```
+<img width="475" height="324" alt="27" src="https://github.com/user-attachments/assets/ceb182e0-692a-4b02-bc9d-ceacae42fdee" />
+
+
+## для каждой задачи название самой последней по дате задачи
+```
+SELECT
+    id,
+    title,
+    LAST_VALUE(title) OVER (
+        ORDER BY task_date
+        ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+    ) AS last_task_title
+FROM task;
+```
+<img width="478" height="316" alt="28" src="https://github.com/user-attachments/assets/f682616b-62e2-4384-99ed-d9217f8fa18c" />
+
