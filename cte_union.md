@@ -216,3 +216,38 @@ FROM task
 ORDER BY user_id, task_date;
 ```
 <img width="397" height="309" alt="19" src="https://github.com/user-attachments/assets/53615b77-5e14-4243-b543-bf7d80d372de" />
+
+# RANGE
+
+## накопительное число задач по датам
+```
+SELECT
+    task_date,
+    COUNT(*) OVER (
+        ORDER BY task_date
+        RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+    ) AS tasks_up_to_date
+FROM task
+WHERE task_date IS NOT NULL;
+```
+
+## количество задач за текущую дату и все предыдущие
+```
+SELECT
+    task_date,
+    SUM(1) OVER (
+        ORDER BY task_date
+        RANGE UNBOUNDED PRECEDING
+    ) AS cumulative_tasks
+FROM task
+WHERE task_date IS NOT NULL;
+```
+# Ранжирующие функции
+
+## порядковый номер задач по дате
+```
+SELECT
+    id, title, task_date,
+    ROW_NUMBER() OVER (ORDER BY task_date) AS row_num
+FROM task;
+```
