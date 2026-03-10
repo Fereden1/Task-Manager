@@ -1,47 +1,47 @@
-alter table task_manager.user_data
-    add column if not exists signup_date date,
-    add column if not exists status varchar(20),
-    add column if not exists preferences jsonb,
-    add column if not exists devices text[],
-    add column if not exists home_location point;
+ALTER TABLE task_manager.user_data
+    ADD COLUMN IF NOT EXISTS signup_date DATE,
+    ADD COLUMN IF NOT EXISTS status VARCHAR(20),
+    ADD COLUMN IF NOT EXISTS preferences JSONB,
+    ADD COLUMN IF NOT EXISTS devices TEXT[],
+    ADD COLUMN IF NOT EXISTS home_location POINT;
 
-alter table task_manager.task
-    add column if not exists due_period daterange,
-    add column if not exists tags text[],
-    add column if not exists metadata jsonb,
-    add column if not exists notes text,
-    add column if not exists task_location point;
+ALTER TABLE task_manager.task
+    ADD COLUMN IF NOT EXISTS due_period DATERANGE,
+    ADD COLUMN IF NOT EXISTS tags TEXT[],
+    ADD COLUMN IF NOT EXISTS metadata JSONB,
+    ADD COLUMN IF NOT EXISTS notes TEXT,
+    ADD COLUMN IF NOT EXISTS task_location POINT;
 
-alter table task_manager.subtask
-    add column if not exists assignee_id int references task_manager.user_data(id) on delete set null,
-    add column if not exists estimate_range int4range,
-    add column if not exists labels text[],
-    add column if not exists details text,
-    add column if not exists metadata jsonb;
+ALTER TABLE task_manager.subtask
+    ADD COLUMN IF NOT EXISTS assignee_id INT REFERENCES task_manager.user_data(id) ON DELETE SET NULL,
+    ADD COLUMN IF NOT EXISTS estimate_range INT4RANGE,
+    ADD COLUMN IF NOT EXISTS labels TEXT[],
+    ADD COLUMN IF NOT EXISTS details TEXT,
+    ADD COLUMN IF NOT EXISTS metadata JSONB;
 
-create index if not exists idx_task_user
-    on task_manager.task(user_id);
+CREATE INDEX IF NOT EXISTS idx_task_user
+    ON task_manager.task(user_id);
 
-create index if not exists idx_task_category
-    on task_manager.task(category_id);
+CREATE INDEX IF NOT EXISTS idx_task_category
+    ON task_manager.task(category_id);
 
-create index if not exists idx_task_priority
-    on task_manager.task(priority_id);
+CREATE INDEX IF NOT EXISTS idx_task_priority
+    ON task_manager.task(priority_id);
 
-create index if not exists idx_subtask_task
-    on task_manager.subtask(task_id);
+CREATE INDEX IF NOT EXISTS idx_subtask_task
+    ON task_manager.subtask(task_id);
 
-create index if not exists idx_subtask_assignee
-    on task_manager.subtask(assignee_id);
+CREATE INDEX IF NOT EXISTS idx_subtask_assignee
+    ON task_manager.subtask(assignee_id);
 
-create index if not exists idx_user_preferences
-    on task_manager.user_data using gin (preferences);
+CREATE INDEX IF NOT EXISTS idx_user_preferences
+    ON task_manager.user_data USING GIN (preferences);
 
-create index if not exists idx_task_due_period
-    on task_manager.task using gist (due_period);
+CREATE INDEX IF NOT EXISTS idx_task_due_period
+    ON task_manager.task USING GIST (due_period);
 
-create index if not exists idx_task_notes_fts
-    on task_manager.task using gin (to_tsvector('simple', coalesce(notes, '')));
+CREATE INDEX IF NOT EXISTS idx_task_notes_fts
+    ON task_manager.task USING GIN (to_tsvector('simple', coalesce(notes, '')));
 
-create index if not exists idx_subtask_estimate_range
-    on task_manager.subtask using gist (estimate_range);
+CREATE INDEX IF NOT EXISTS idx_subtask_estimate_range
+    ON task_manager.subtask USING GIST (estimate_range);
