@@ -1,6 +1,6 @@
-#GIN
+# GIN
 
-##1) Проверка JSONB по теме оформления
+## 1) Проверка JSONB по теме оформления
 ```
 SELECT id, username, preferences
 FROM Task_Manager.user_data
