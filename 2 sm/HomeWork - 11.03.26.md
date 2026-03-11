@@ -122,7 +122,7 @@ WHERE estimate_range @> 10;
 
 <img width="913" height="155" alt="Screenshot_7" src="https://github.com/user-attachments/assets/8616e517-f7e1-4e01-a7a0-356a584e04ac" />
 
-#JOIN
+# JOIN
 
 ## 1) Nested Loop Ищем конкретного пользователя по u.id = 1000. БД сначала находит одну строку в user_data по первичному ключу, затем по индексу idx_task_user ищет все связанные задачи в таблице task.
 ```sql
@@ -180,7 +180,5 @@ WHERE s.id = 7000;
 ```
 
 <img width="1081" height="363" alt="Screenshot_14" src="https://github.com/user-attachments/assets/6a7e5b25-f9bb-4eb3-8b0e-f34efe9bf1cb" />
-
-MVCC 1)
 
 
